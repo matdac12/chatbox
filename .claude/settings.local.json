@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(for dir in ar de en es fr ja ko nb-NO pt-PT ru sv zh-Hans zh-Hant)",
+      "Bash(do rm -rf \"$dir\")",
+      "Bash(done)",
+      "Bash(test:*)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(npm run build-dll:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

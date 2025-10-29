@@ -6,7 +6,6 @@ import {
   IconInfoCircle,
   IconLayoutSidebarLeftCollapse,
   IconMessageChatbot,
-  IconPhotoPlus,
   IconSettingsFilled,
 } from '@tabler/icons-react'
 import { useNavigate } from '@tanstack/react-router'
@@ -96,7 +95,7 @@ export default function Sidebar() {
           <Flex align="center" gap="sm">
             <Image src={icon} w={20} h={20} />
             <Text span c="chatbox-secondary" size="xl" lh={1.2} fw="700">
-              Chatbox
+              Assistente IT
             </Text>
             {FORCE_ENABLE_DEV_PAGES && <ThemeSwitchButton size="xs" />}
           </Flex>
@@ -116,9 +115,6 @@ export default function Sidebar() {
             <Button variant="light" flex={1} onClick={handleCreateNewSession}>
               <ScalableIcon icon={IconCirclePlus} className="mr-2" />
               {t('New Chat')}
-            </Button>
-            <Button variant="light" px="sm" onClick={handleCreateNewPictureSession}>
-              <ScalableIcon icon={IconPhotoPlus} />
             </Button>
           </Flex>
           <NavLink

@@ -1,12 +1,12 @@
 {
-  "name": "xyz.chatboxapp.ce",
-  "productName": "xyz.chatboxapp.ce",
+  "name": "com.assistenteit.app",
+  "productName": "Assistente IT",
   "version": "1.15.4",
-  "description": "A desktop client for multiple cutting-edge AI models",
+  "description": "Assistente IT - Chat con documenti e AI",
   "author": {
-    "name": "Mediocre Company",
-    "email": "hi@chatboxai.com",
-    "url": "https://github.com/chatboxai"
+    "name": "Your Company",
+    "email": "info@yourcompany.com",
+    "url": "https://yourcompany.com"
   },
   "main": "./dist/main/main.js",
   "scripts": {

@@ -1,9 +1,9 @@
 {
-  "name": "xyz.chatboxapp.app",
-  "productName": "xyz.chatboxapp.app",
+  "name": "com.assistenteit.app",
+  "productName": "Assistente IT",
   "version": "0.0.1",
   "private": true,
-  "description": "A desktop client for multiple cutting-edge AI models",
+  "description": "Assistente IT - Chat con documenti e AI",
   "main": "./src/main/main.ts",
   "scripts": {
     "build": "concurrently \"npm run build:main\" \"npm run build:renderer\" && npm run delete-sourcemaps",

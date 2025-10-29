@@ -489,21 +489,7 @@ export function createMessage(role: MessageRole = MessageRoleEnum.User, content:
 
 // type ShortcutName = keyof ShortcutSetting
 
-export type Language =
-  | 'en'
-  | 'zh-Hans'
-  | 'zh-Hant'
-  | 'ja'
-  | 'ko'
-  | 'ru'
-  | 'de'
-  | 'fr'
-  | 'pt-PT'
-  | 'es'
-  | 'ar'
-  | 'it-IT'
-  | 'sv'
-  | 'nb-NO'
+export type Language = 'it-IT'
 
 export interface Config {
   uuid: string

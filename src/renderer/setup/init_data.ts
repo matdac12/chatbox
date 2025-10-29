@@ -1,4 +1,3 @@
-import { defaultSessionsForCN, defaultSessionsForEN } from '@/packages/initial_data'
 import platform from '@/platform'
 import storage from '@/storage'
 import { StorageKey, StorageKeyGenerator } from '@/storage/StoreStorage'
@@ -24,9 +23,8 @@ async function initSessionsIfNeeded() {
 }
 
 async function initPresetSessions() {
-  const lang = await platform.getLocale().catch((e) => 'en')
-
-  const defaultSessions = lang.startsWith('zh') ? defaultSessionsForCN : defaultSessionsForEN
+  // No preset sessions - users start with a clean slate
+  const defaultSessions: any[] = []
 
   for (const session of defaultSessions) {
     await storage.setItemNow(StorageKeyGenerator.session(session.id), session)
