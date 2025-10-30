@@ -10,7 +10,7 @@ import { createModelDependencies } from '@/adapters'
 import * as dom from '@/hooks/dom'
 import { languageNameMap } from '@/i18n/locales'
 import * as appleAppStore from '@/packages/apple_app_store'
-import { generateImage, generateText, streamText } from '@/packages/model-calls'
+import { generateText, streamText } from '@/packages/model-calls'
 import { getModelDisplayName } from '@/packages/model-setting-utils'
 import { estimateTokensFromMessages } from '@/packages/token'
 import { router } from '@/router'
@@ -123,18 +123,6 @@ export async function createEmpty() {
   return newSession
 }
 
-/**
- * 创建 n 个空图片消息（loading 中，用于占位）
- * @param n 空消息数量
- * @returns
- */
-export function createLoadingPictures(n: number): MessagePicture[] {
-  const ret: MessagePicture[] = []
-  for (let i = 0; i < n; i++) {
-    ret.push({ loading: true })
-  }
-  return ret
-}
 
 /**
  * 切换当前会话，根据 id
@@ -805,42 +793,6 @@ async function generate(
           tokensUsed: targetMsg.tokensUsed ?? estimateTokensFromMessages([...promptMsgs, targetMsg]),
           status: [],
           finishReason: result.finishReason,
-        }
-        await modifyMessage(sessionId, targetMsg, true)
-        break
-      }
-      // 图片消息生成
-      case 'picture': {
-        // 取当前消息之前最近的一条用户消息作为 prompt
-        const userMessage = messages.slice(0, targetMsgIx).findLast((m) => m.role === 'user')
-        if (!userMessage) {
-          // 不应该找不到用户消息
-          throw new Error('No user message found')
-        }
-
-        const insertImage = async (image: MessageImagePart) => {
-          targetMsg.contentParts.push(image)
-          targetMsg.status = []
-          await modifyMessage(sessionId, targetMsg, true)
-        }
-        await generateImage(
-          model,
-          {
-            message: userMessage,
-            num: settings.imageGenerateNum || 1,
-          },
-          async (picBase64) => {
-            const storageKey = StorageKeyGenerator.picture(`${session.id}:${targetMsg.id}`)
-            // 图片需要存储到 indexedDB，如果直接使用 OpenAI 返回的图片链接，图片链接将随着时间而失效
-            await storage.setBlob(storageKey, picBase64)
-            await insertImage({ type: 'image', storageKey })
-          }
-        )
-        targetMsg = {
-          ...targetMsg,
-          generating: false,
-          cancel: undefined,
-          status: [],
         }
         await modifyMessage(sessionId, targetMsg, true)
         break
