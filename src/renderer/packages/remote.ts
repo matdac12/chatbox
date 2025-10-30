@@ -16,6 +16,11 @@ import {
 } from '../../shared/types'
 import { getOS } from './navigator'
 
+// =============================================================================
+// ASSISTENTE IT: All remote API calls to ChatboxAI servers have been disabled
+// This file now returns safe default values without making external requests
+// =============================================================================
+
 let _afetch: ReturnType<typeof createAfetch> | null = null
 let afetchPromise: Promise<ReturnType<typeof createAfetch>> | null = null
 
@@ -42,111 +47,35 @@ async function getAfetch() {
   return _afetch
 }
 
-// ========== API ORIGIN 根据可用性维护 ==========
-
-// const RELEASE_ORIGIN = 'https://releases.chatboxai.app'
-function getAPIOrigin() {
-  if (USE_LOCAL_API) {
-    return 'http://localhost:8002'
-  } else {
-    return chatboxaiAPI.getChatboxAPIOrigin()
-  }
-}
-
-const getChatboxHeaders = async () => {
-  return {
-    'CHATBOX-PLATFORM': await platform.getPlatform(),
-    'CHATBOX-PLATFORM-TYPE': platform.type,
-    'CHATBOX-VERSION': await platform.getVersion(),
-    'CHATBOX-OS': getOS(),
-  }
-}
-
-// ========== 各个接口方法 ==========
+// ========== STUBBED API FUNCTIONS - NO EXTERNAL CALLS ==========
 
 export async function checkNeedUpdate(version: string, os: string, config: Config, settings: Settings) {
-  type Response = {
-    need_update?: boolean
-  }
-  // const res = await ofetch<Response>(`${RELEASE_ORIGIN}/chatbox_need_update/${version}`, {
-  const res = await ofetch<Response>(`${getAPIOrigin()}/chatbox_need_update/${version}`, {
-    method: 'POST',
-    retry: 3,
-    body: {
-      uuid: config.uuid,
-      os: os,
-      allowReportingAndTracking: settings.allowReportingAndTracking ? 1 : 0,
-    },
-  })
-  return !!res.need_update
+  // DISABLED: No update checks to external servers
+  return false
 }
 
-// export async function getSponsorAd(): Promise<null | SponsorAd> {
-//     type Response = {
-//         data: null | SponsorAd
-//     }
-//     // const res = await ofetch<Response>(`${RELEASE_ORIGIN}/sponsor_ad`, {
-//     const res = await ofetch<Response>(`${API_ORIGIN}/sponsor_ad`, {
-//         retry: 3,
-//     })
-//     return res['data'] || null
-// }
-
-// export async function listSponsorAboutBanner() {
-//     type Response = {
-//         data: SponsorAboutBanner[]
-//     }
-//     // const res = await ofetch<Response>(`${RELEASE_ORIGIN}/sponsor_about_banner`, {
-//     const res = await ofetch<Response>(`${API_ORIGIN}/sponsor_ad`, {
-//         retry: 3,
-//     })
-//     return res['data'] || []
-// }
-
 export async function listCopilots(lang: string) {
-  type Response = {
-    data: CopilotDetail[]
-  }
-  const res = await ofetch<Response>(`${getAPIOrigin()}/api/copilots/list`, {
-    method: 'POST',
-    retry: 3,
-    body: { lang },
-  })
-  return res.data
+  // DISABLED: No remote copilot fetching
+  return []
 }
 
 export async function recordCopilotShare(detail: CopilotDetail) {
-  await ofetch(`${getAPIOrigin()}/api/copilots/share-record`, {
-    method: 'POST',
-    body: {
-      detail: detail,
-    },
-  })
+  // DISABLED: No telemetry to external servers
+  return
 }
 
 export async function getPremiumPrice() {
-  type Response = {
-    data: {
-      price: number
-      discount: number
-      discountLabel: string
-    }
+  // DISABLED: No premium features
+  return {
+    price: 0,
+    discount: 0,
+    discountLabel: '',
   }
-  const res = await ofetch<Response>(`${getAPIOrigin()}/api/premium/price`, {
-    retry: 3,
-  })
-  return res.data
 }
 
 export async function getRemoteConfig(config: keyof RemoteConfig) {
-  type Response = {
-    data: Pick<RemoteConfig, typeof config>
-  }
-  const res = await ofetch<Response>(`${getAPIOrigin()}/api/remote_config/${config}`, {
-    retry: 3,
-    headers: await getChatboxHeaders(),
-  })
-  return res['data']
+  // DISABLED: No remote configuration fetching
+  return {} as any
 }
 
 export interface DialogConfig {
@@ -155,362 +84,114 @@ export interface DialogConfig {
 }
 
 export async function getDialogConfig(params: { uuid: string; language: string; version: string }) {
-  type Response = {
-    data: null | DialogConfig
-  }
-  const res = await ofetch<Response>(`${getAPIOrigin()}/api/dialog_config`, {
-    method: 'POST',
-    retry: 3,
-    body: params,
-    headers: await getChatboxHeaders(),
-  })
-  return res['data'] || null
+  // DISABLED: No remote dialog configs
+  return null
 }
 
 export async function getLicenseDetail(params: { licenseKey: string }) {
-  type Response = {
-    data: ChatboxAILicenseDetail | null
-  }
-  const res = await ofetch<Response>(`${getAPIOrigin()}/api/license/detail`, {
-    retry: 3,
-    headers: {
-      Authorization: params.licenseKey,
-      ...(await getChatboxHeaders()),
-    },
-  })
-  return res['data'] || null
+  // DISABLED: No license validation
+  return null
 }
 
 export async function getLicenseDetailRealtime(params: { licenseKey: string }) {
-  type Response = {
-    data: ChatboxAILicenseDetail | null
-  }
-  const res = await ofetch<Response>(`${getAPIOrigin()}/api/license/detail/realtime`, {
-    retry: 5,
-    headers: {
-      Authorization: params.licenseKey,
-      ...(await getChatboxHeaders()),
-    },
-  })
-  return res['data'] || null
+  // DISABLED: No license validation
+  return null
 }
 
 export async function generateUploadUrl(params: { licenseKey: string; filename: string }) {
-  type Response = {
-    data: {
-      url: string
-      filename: string
-    }
-  }
-  const afetch = await getAfetch()
-  const res = await afetch(
-    `${getAPIOrigin()}/api/files/generate-upload-url`,
-    {
-      method: 'POST',
-      headers: {
-        Authorization: params.licenseKey,
-        'Content-Type': 'application/json',
-        ...(await getChatboxHeaders()),
-      },
-      body: JSON.stringify(params),
-    },
-    { parseChatboxRemoteError: true }
-  )
-  const json: Response = await res.json()
-  return json['data']
+  // DISABLED: No file uploads to external servers
+  throw new Error('File upload to external servers is disabled')
 }
 
 export async function createUserFile<T extends boolean>(params: {
   licenseKey: string
   filename: string
-  filetype: string
+  content: string
   returnContent: T
-}) {
-  type Response = {
-    data: {
-      uuid: string
-      content: T extends true ? string : undefined
-    }
-  }
-  const afetch = await getAfetch()
-  const res = await afetch(
-    `${getAPIOrigin()}/api/files/create`,
-    {
-      method: 'POST',
-      headers: {
-        Authorization: params.licenseKey,
-        'Content-Type': 'application/json',
-        ...(await getChatboxHeaders()),
-      },
-      body: JSON.stringify(params),
-    },
-    { parseChatboxRemoteError: true }
-  )
-  const json: Response = await res.json()
-  return json['data']
+}): Promise<T extends true ? { fileUUID: string; content: string } : { fileUUID: string }> {
+  // DISABLED: No file creation on external servers
+  throw new Error('External file creation is disabled')
 }
 
 export async function uploadAndCreateUserFile(licenseKey: string, file: File) {
-  const { url, filename } = await generateUploadUrl({
-    licenseKey,
-    filename: file.name,
-  })
-  await uploadFile(file, url)
-  const result = await createUserFile({
-    licenseKey,
-    filename,
-    filetype: file.type,
-    returnContent: true,
-  })
-  const storageKey = `parseFile-${file.name}_${result.uuid}.${file.type.split('/')[1]}.txt`
-
-  await platform.setStoreBlob(storageKey, result.content)
-  return storageKey
+  // DISABLED: No file uploads to external servers
+  throw new Error('File upload to external servers is disabled')
 }
 
 export async function parseUserLinkPro(params: { licenseKey: string; url: string }) {
-  type Response = {
-    data: {
-      uuid: string
-      title: string
-      content: string
-    }
-  }
-  const afetch = await getAfetch()
-  const res = await afetch(
-    `${getAPIOrigin()}/api/links/parse`,
-    {
-      method: 'POST',
-      headers: {
-        Authorization: params.licenseKey,
-        'Content-Type': 'application/json',
-        ...(await getChatboxHeaders()),
-      },
-      body: JSON.stringify({
-        ...params,
-        returnContent: true,
-      }),
-    },
-    {
-      parseChatboxRemoteError: true,
-      retry: 2,
-    }
-  )
-  const json: Response = await res.json()
-  const storageKey = `parseUrl-${params.url}_${json['data']['uuid']}.txt`
-  if (json['data']['content']) {
-    await platform.setStoreBlob(storageKey, json['data']['content'])
-  }
-  return {
-    key: json['data']['uuid'],
-    title: json['data']['title'],
-    storageKey,
-  }
+  // DISABLED: Pro link parsing requires external API
+  throw new Error('Pro link parsing is disabled - use local parsing instead')
 }
 
 export async function parseUserLinkFree(params: { url: string }) {
-  type Response = {
-    title: string
-    text: string
+  // DISABLED: Free link parsing to external servers
+  return {
+    content: '',
+    fileType: 'text/plain',
+    error: 'External link parsing is disabled',
   }
-  const afetch = await getAfetch()
-  const res = await afetch(`https://cors-proxy.chatboxai.app/api/fetch-webpage`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(params),
-  })
-  const json: Response = await res.json()
-  return json
 }
 
 export async function webBrowsing(params: { licenseKey: string; query: string }) {
-  type Response = {
-    data: {
-      uuid?: string
-      query: string
-      links: {
-        title: string
-        url: string
-        content: string
-      }[]
-    }
+  // DISABLED: Web browsing through external proxy
+  return {
+    result: '',
+    error: 'External web browsing proxy is disabled',
   }
-  const afetch = await getAfetch()
-  const res = await afetch(
-    `${getAPIOrigin()}/api/tool/web-search`,
-    {
-      method: 'POST',
-      headers: {
-        Authorization: params.licenseKey,
-        'Content-Type': 'application/json',
-        ...(await getChatboxHeaders()),
-      },
-      body: JSON.stringify(params),
-    },
-    {
-      parseChatboxRemoteError: true,
-      retry: 2,
-    }
-  )
-  const json: Response = await res.json()
-  return json['data']
 }
 
 export async function activateLicense(params: { licenseKey: string; instanceName: string }) {
-  type Response = {
-    data: {
-      valid: boolean
-      instanceId: string
-      error: string
-    }
+  // DISABLED: No license activation
+  return {
+    success: false,
+    data: null,
+    error_code: 'LICENSE_DISABLED',
+    error_message: 'License system is disabled',
   }
-  const afetch = await getAfetch()
-  const res = await afetch(
-    `${getAPIOrigin()}/api/license/activate`,
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        ...(await getChatboxHeaders()),
-      },
-      body: JSON.stringify(params),
-    },
-    {
-      parseChatboxRemoteError: true,
-      retry: 5,
-    }
-  )
-  const json: Response = await res.json()
-  return json['data']
 }
 
 export async function deactivateLicense(params: { licenseKey: string; instanceId: string }) {
-  const afetch = await getAfetch()
-  await afetch(
-    `${getAPIOrigin()}/api/license/deactivate`,
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(params),
-    },
-    {
-      parseChatboxRemoteError: true,
-      retry: 5,
-    }
-  )
+  // DISABLED: No license deactivation
+  return {
+    success: false,
+    error_code: 'LICENSE_DISABLED',
+    error_message: 'License system is disabled',
+  }
 }
 
 export async function validateLicense(params: { licenseKey: string; instanceId: string }) {
-  type Response = {
-    data: {
-      valid: boolean
-    }
+  // DISABLED: No license validation
+  return {
+    valid: false,
+    error_code: 'LICENSE_DISABLED',
+    error_message: 'License system is disabled',
   }
-  const afetch = await getAfetch()
-  const res = await afetch(
-    `${getAPIOrigin()}/api/license/validate`,
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        ...(await getChatboxHeaders()),
-      },
-      body: JSON.stringify(params),
-    },
-    {
-      parseChatboxRemoteError: true,
-      retry: 5,
-    }
-  )
-  const json: Response = await res.json()
-  return json['data']
 }
 
-const RemoteModelInfoSchema = z.object({
-  modelId: z.string(),
-  modelName: z.string(),
-  labels: z.array(z.string()).optional(),
-  type: z.enum(['chat', 'embedding', 'rerank']).optional(),
-  apiStyle: z.enum(['google', 'openai', 'anthropic']).optional(),
-  contextWindow: z.number().optional(),
-  capabilities: z.array(z.enum(['vision', 'tool_use', 'reasoning'])).optional(),
-})
-
-const ModelManifestResponseSchema = z.object({
-  success: z.boolean().optional(),
-  data: z.object({
-    groupName: z.string(),
-    models: z.array(RemoteModelInfoSchema),
-  }),
-})
-
 export async function getModelManifest(params: { aiProvider: ModelProvider; licenseKey?: string; language?: string }) {
-  const afetch = await getAfetch()
-  const res = await afetch(
-    `${getAPIOrigin()}/api/model_manifest`,
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        ...(await getChatboxHeaders()),
-      },
-      body: JSON.stringify({
-        aiProvider: params.aiProvider,
-        licenseKey: params.licenseKey,
-        language: params.language,
-      }),
-    },
-    {
-      parseChatboxRemoteError: true,
-      retry: 2,
-    }
-  )
-  const { success, data, error } = ModelManifestResponseSchema.safeParse(await res.json())
-  if (!success) {
-    console.log('getModelManifest error', error)
-    return []
+  // DISABLED: No model manifest fetching from external servers
+  return {
+    models: [],
   }
-  return data.data
 }
 
 export async function reportContent(params: { id: string; type: string; details: string }) {
-  const afetch = await getAfetch()
-  await afetch(`${getAPIOrigin()}/api/report_content`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      ...(await getChatboxHeaders()),
-    },
-    body: JSON.stringify(params),
-  })
+  // DISABLED: No content reporting to external servers
+  return
 }
 
-const ProviderInfoResponseSchema = z.object({
-  success: z.boolean(),
-  data: z.record(z.string(), ProviderModelInfoSchema.nullable()),
-})
-
 export async function getProviderModelsInfo(params: { modelIds: string[] }) {
-  const afetch = await getAfetch()
-  const res = await afetch(
-    `${getAPIOrigin()}/api/provider_models_info`,
-    {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        ...(await getChatboxHeaders()),
-      },
-      body: JSON.stringify(params),
-    },
-    {
-      parseChatboxRemoteError: true,
-      retry: 2,
-    }
-  )
-  const json = ProviderInfoResponseSchema.parse(await res.json())
-  return json.data
+  // DISABLED: No model info fetching from external servers
+  const result = params.modelIds.map((modelId) => ({
+    modelId,
+    name: modelId,
+    desc: '',
+    inputPrice: 0,
+    outputPrice: 0,
+    contextWindow: 0,
+    supportFileContext: false,
+    supportVision: false,
+  }))
+
+  return result
 }

@@ -16,7 +16,8 @@ import Broom from './icons/Broom'
 import LayoutExpand from './icons/LayoutExpand'
 import LayoutShrink from './icons/LayoutShrink'
 import { ScalableIcon } from './ScalableIcon'
-import UpdateAvailableButton from './UpdateAvailableButton'
+// DISABLED: Update checker removed
+// import UpdateAvailableButton from './UpdateAvailableButton'
 
 /**
  * 顶部标题工具栏（右侧）
@@ -27,20 +28,22 @@ export default function Toolbar({ sessionId }: { sessionId: string }) {
   const isSmallScreen = useIsSmallScreen()
   const isLargeScreen = useIsLargeScreen()
 
-  const [showUpdateNotification, setShowUpdateNotification] = useState(false)
+  // DISABLED: Update notification state removed
+  // const [showUpdateNotification, setShowUpdateNotification] = useState(false)
   const setOpenSearchDialog = useUIStore((s) => s.setOpenSearchDialog)
   const setThreadHistoryDrawerOpen = useSetAtom(atoms.showThreadHistoryDrawerAtom)
   const widthFull = useUIStore((s) => s.widthFull)
   const setWidthFull = useUIStore((s) => s.setWidthFull)
 
-  useEffect(() => {
-    const offUpdateDownloaded = platform.onUpdateDownloaded(() => {
-      setShowUpdateNotification(true)
-    })
-    return () => {
-      offUpdateDownloaded()
-    }
-  }, [])
+  // DISABLED: Update checker listener removed
+  // useEffect(() => {
+  //   const offUpdateDownloaded = platform.onUpdateDownloaded(() => {
+  //     setShowUpdateNotification(true)
+  //   })
+  //   return () => {
+  //     offUpdateDownloaded()
+  //   }
+  // }, [])
 
   const handleExportAndSave = () => {
     NiceModal.show('export-chat')
@@ -59,7 +62,7 @@ export default function Toolbar({ sessionId }: { sessionId: string }) {
 
   return !isSmallScreen ? (
     <Flex align="center" gap="md" className="controls">
-      {showUpdateNotification && <UpdateAvailableButton />}
+      {/* DISABLED: Update notification button removed */}
 
       {!isSmallScreen ? (
         <Button
