@@ -1,257 +1,213 @@
-<p align="right">
-  <a href="README.md">English</a> |
-  <a href="./doc/README-CN.md">简体中文</a>
-</p>
-
-This is the repository for the Chatbox Community Edition, open-sourced under the GPLv3 license.
-
-[Chatbox is going open-source Again!](https://github.com/chatboxai/chatbox/issues/2266)
-
-We regularly sync code from the pro repo to this repo, and vice versa.
-
-### Download for Desktop
-
-<table style="width: 100%">
-  <tr>
-    <td width="25%" align="center">
-      <b>Windows</b>
-    </td>
-    <td width="25%" align="center" colspan="2">
-      <b>MacOS</b>
-    </td>
-    <td width="25%" align="center">
-      <b>Linux</b>
-    </td>
-  </tr>
-  <tr style="text-align: center">
-    <td align="center" valign="middle">
-      <a href='https://chatboxai.app/?c=download-windows'>
-        <img src='./doc/statics/windows.png' style="height:24px; width: 24px" />
-        <br />
-        <b>Setup.exe</b>
-      </a>
-    </td>
-    <td align="center" valign="middle">
-      <a href='https://chatboxai.app/?c=download-mac-intel'>
-        <img src='./doc/statics/mac.png' style="height:24px; width: 24px" />
-        <br />
-        <b>Intel</b>
-      </a>
-    </td>
-    <td align="center" valign="middle">
-      <a href='https://chatboxai.app/?c=download-mac-aarch'>
-        <img src='./doc/statics/mac.png' style="height:24px; width: 24px" />
-        <br />
-        <b style="white-space: nowrap;">Apple Silicon</b>
-      </a>
-    </td>
-    <td align="center" valign="middle">
-      <a href='https://chatboxai.app/?c=download-linux'>
-        <img src='./doc/statics/linux.png' style="height:24px; width: 24px" />
-        <br />
-        <b>AppImage</b>
-      </a>
-    </td>
-  </tr>
-</table>
-
-### Download for iOS/Android
-
-<a href='https://apps.apple.com/app/chatbox-ai/id6471368056' style='margin-right: 4px'>
-<img src='./doc/statics/app_store.webp' style="height:38px;" />
-</a>
-<a href='https://play.google.com/store/apps/details?id=xyz.chatboxapp.chatbox' style='margin-right: 4px'>
-<img src='./doc/statics/google_play.png' style="height:38px;" />
-</a>
-<a href='https://chatboxai.app/install?download=android_apk' style='margin-right: 4px; display: inline-flex; justify-content: center'>
-<img src='./doc/statics/android.png' style="height:28px; display: inline-block" />
-.APK
-</a>
-
-For more information: [chatboxai.app](https://chatboxai.app/)
-
----
-
 <h1 align="center">
 <img src='./doc/statics/icon.png' width='30'>
-<span>
-    Chatbox
-    <span style="font-size:8px; font-weight: normal;">(Community Edition)</span>
-</span>
+<span>Assistente IT</span>
 </h1>
+
 <p align="center">
-    <em>Your Ultimate AI Copilot on the Desktop. <br />Chatbox is a desktop client for ChatGPT, Claude and other LLMs, available on Windows, Mac, Linux</em>
+    <em>Il tuo assistente IT intelligente per Windows.<br />
+    Risolvi problemi tecnici con l'aiuto dell'intelligenza artificiale.</em>
 </p>
 
 <p align="center">
-<a href="https://github.com/chatboxai/chatbox/releases" target="_blank">
-<img alt="macOS" src="https://img.shields.io/badge/-macOS-black?style=flat-square&logo=apple&logoColor=white" />
-</a>
-<a href="https://github.com/chatboxai/chatbox/releases" target="_blank">
+<a href="https://github.com/matdac12/chatbox/releases" target="_blank">
 <img alt="Windows" src="https://img.shields.io/badge/-Windows-blue?style=flat-square&logo=windows&logoColor=white" />
 </a>
-<a href="https://github.com/chatboxai/chatbox/releases" target="_blank">
-<img alt="Linux" src="https://img.shields.io/badge/-Linux-yellow?style=flat-square&logo=linux&logoColor=white" />
-</a>
-<a href="https://github.com/chatboxai/chatbox/releases" target="_blank">
-<img alt="Downloads" src="https://img.shields.io/github/downloads/chatboxai/chatbox/total.svg?style=flat" />
-</a>
 </p>
 
-<a href="https://www.producthunt.com/posts/chatbox?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-chatbox" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=429547&theme=light" alt="Chatbox - Better&#0032;UI&#0032;&#0038;&#0032;Desktop&#0032;App&#0032;for&#0032;ChatGPT&#0044;&#0032;Claude&#0032;and&#0032;other&#0032;LLMs&#0046; | Product Hunt" style="width: 150px; height: 30px;" width="100" height="40" /></a>
+## Cos'è Assistente IT?
 
-<a href="./doc/statics/snapshot_light.png">
-<img src="./doc/statics/snapshot_light.png" width="400"/>
-</a>
-<a href="./doc/statics/snapshot_dark.png">
-<img src="./doc/statics/snapshot_dark.png" width="400"/>
-</a>
+**Assistente IT** è un'applicazione desktop che ti aiuta a risolvere problemi tecnici utilizzando modelli di intelligenza artificiale avanzati. È come avere un esperto IT sempre disponibile sul tuo computer.
 
-<!-- <table>
-<tr>
-<td>
-<img src="./dec/../doc/demo_mobile_1.png" alt="App Screenshot" style="box-shadow: 2px 2px 10px rgba(0,0,0,0.1); border: 1px solid #ddd; border-radius: 8px; height: 300px" />
-</td>
-<td>
-<img src="./dec/../doc/demo_mobile_2.png" alt="App Screenshot" style="box-shadow: 2px 2px 10px rgba(0,0,0,0.1); border: 1px solid #ddd; border-radius: 8px; height: 300px" />
-</td>
-</tr>
-</table> -->
+L'assistente è specializzato nel:
+- **Risolvere problemi informatici** con soluzioni passo dopo passo
+- **Gestire questioni di rete** e connettività
+- **Supportare la sicurezza IT** e best practices
+- **Spiegare concetti tecnici** in modo semplice e comprensibile
 
-## Features
+## Caratteristiche Principali
 
--   **Local Data Storage**  
-    :floppy_disk: Your data remains on your device, ensuring it never gets lost and maintains your privacy.
+- **💾 Dati Locali**
+  Tutte le tue conversazioni rimangono sul tuo dispositivo. Nessun dato viene inviato a server esterni (eccetto le richieste ai provider AI che scegli).
 
--   **No-Deployment Installation Packages**  
-    :package: Get started quickly with downloadable installation packages. No complex setup necessary!
+- **🎯 Prompt IT Preconfigurato**
+  L'assistente è già configurato per rispondere come un esperto IT, fornendo soluzioni pratiche e immediate.
 
--   **Support for Multiple LLM Providers**  
-    :gear: Seamlessly integrate with a variety of cutting-edge language models:
+- **🤖 Supporto Multi-Provider**
+  Scegli tra diversi fornitori di AI in base alle tue esigenze:
+  - **OpenAI** (ChatGPT) - Modelli GPT-4, GPT-4o, O3
+  - **Anthropic Claude** - Modelli Claude 3.5 Sonnet, Opus
+  - **Google Gemini** - Gemini Pro e Flash
+  - **Ollama** - Esegui modelli localmente (llama, mistral, ecc.)
 
-    -   OpenAI (ChatGPT)
-    -   Azure OpenAI
-    -   Claude
-    -   Google Gemini Pro
-    -   Ollama (enable access to local models like llama2, Mistral, Mixtral, codellama, vicuna, yi, and solar)
-    -   ChatGLM-6B
+- **📚 Knowledge Base**
+  Carica documenti e manuali tecnici per ottenere risposte contestualizzate.
 
--   **Image Generation with Dall-E-3**  
-    :art: Create the images of your imagination with Dall-E-3.
+- **🌐 Navigazione Web**
+  L'assistente può cercare informazioni online per fornirti soluzioni aggiornate.
 
--   **Enhanced Prompting**  
-    :speech_balloon: Advanced prompting features to refine and focus your queries for better responses.
+- **🔧 MCP Server Support**
+  Integrazione con Model Context Protocol per funzionalità avanzate.
 
--   **Keyboard Shortcuts**  
-    :keyboard: Stay productive with shortcuts that speed up your workflow.
+- **⌨️ Scorciatoie da Tastiera**
+  Lavora più velocemente con comandi rapidi.
 
--   **Markdown, Latex & Code Highlighting**  
-    :scroll: Generate messages with the full power of Markdown and Latex formatting, coupled with syntax highlighting for various programming languages, enhancing readability and presentation.
+- **🎨 Tema Scuro**
+  Interfaccia comoda per lunghe sessioni di lavoro.
 
--   **Prompt Library & Message Quoting**  
-    :books: Save and organize prompts for reuse, and quote messages for context in discussions.
+- **💬 Cronologia Conversazioni**
+  Tutte le tue chat vengono salvate localmente per riferimenti futuri.
 
--   **Streaming Reply**  
-    :arrow_forward: Provide rapid responses to your interactions with immediate, progressive replies.
+## Requisiti di Sistema
 
--   **Ergonomic UI & Dark Theme**  
-    :new_moon: A user-friendly interface with a night mode option for reduced eye strain during extended use.
+- **Sistema Operativo**: Windows 10 o superiore (x64 o ARM64)
+- **RAM**: Minimo 4GB raccomandato
+- **Connessione Internet**: Necessaria per utilizzare i provider AI cloud
 
--   **Team Collaboration**  
-    :busts_in_silhouette: Collaborate with ease and share OpenAI API resources among your team. [Learn More](./team-sharing/README.md)
+## Installazione
 
--   **Cross-Platform Availability**  
-    :computer: Chatbox is ready for Windows, Mac, Linux users.
+1. Scarica il file `Assistente IT-Setup.exe` dalla sezione [Releases](https://github.com/matdac12/chatbox/releases)
+2. Esegui il programma di installazione
+3. Segui le istruzioni sullo schermo
+4. **Nota**: Windows potrebbe mostrare un avviso di sicurezza perché l'applicazione non è firmata digitalmente. Clicca su "Maggiori informazioni" e poi "Esegui comunque"
 
--   **Access Anywhere with the Web Version**  
-    :globe_with_meridians: Use the web application on any device with a browser, anywhere.
+## Configurazione Iniziale
 
--   **iOS & Android**  
-    :phone: Use the mobile applications that will bring this power to your fingertips on the go.
+1. **Apri l'applicazione** - Al primo avvio vedrai l'interfaccia principale
+2. **Configura un provider AI**:
+   - Vai su **Impostazioni** (icona ingranaggio nella barra laterale)
+   - Seleziona un provider (OpenAI, Claude, Gemini o Ollama)
+   - Inserisci la tua API key (ottienila dal sito del provider)
+3. **Inizia a chattare** - Clicca su "Nuova Chat" e inizia a porre domande!
 
--   **Multilingual Support**  
-    :earth_americas: Catering to a global audience by offering support in multiple languages:
+## Come Ottenere le API Keys
 
-    -   English
-    -   简体中文 (Simplified Chinese)
-    -   繁體中文 (Traditional Chinese)
-    -   日本語 (Japanese)
-    -   한국어 (Korean)
-    -   Français (French)
-    -   Deutsch (German)
-    -   Русский (Russian)
-    -   Español (Spanish)
+### OpenAI (ChatGPT)
+1. Vai su [platform.openai.com](https://platform.openai.com/)
+2. Registrati o accedi
+3. Vai su "API Keys" e crea una nuova chiave
+4. Copia la chiave e incollala nelle impostazioni di Assistente IT
 
--   **And More...**  
-    :sparkles: Constantly enhancing the experience with new features!
+### Anthropic Claude
+1. Vai su [console.anthropic.com](https://console.anthropic.com/)
+2. Registrati o accedi
+3. Vai su "API Keys" e genera una nuova chiave
+4. Copia la chiave e incollala nelle impostazioni
 
-## FAQ
+### Google Gemini
+1. Vai su [makersuite.google.com](https://makersuite.google.com/)
+2. Accedi con il tuo account Google
+3. Ottieni la tua API key
+4. Incollala nelle impostazioni
 
--   [Frequently Asked Questions](./doc/FAQ.md)
+### Ollama (Modelli Locali)
+1. Installa Ollama da [ollama.ai](https://ollama.ai/)
+2. Scarica un modello: `ollama pull llama2`
+3. In Assistente IT, seleziona Ollama come provider
+4. L'endpoint locale è già preconfigurato
 
-## Why I made Chatbox?
+## Esempi di Utilizzo
 
-I developed Chatbox initially because I was debugging some prompts and found myself in need of a simple and easy-to-use prompt and API debugging tool. I thought there might be more people who needed such a tool, so I open-sourced it.
+**Problema di Rete:**
+> "Il mio computer non si connette al Wi-Fi. Come posso risolvere?"
 
-At first, I didn't know that it would be so popular. I listened to the feedback from the open-source community and continued to develop and improve it. Now, it has become a very useful AI desktop application. There are many users who love Chatbox, and they not only use it for developing and debugging prompts, but also for daily chatting, and even to do some more interesting things like using well-designed prompts to make AI play various professional roles to assist them in everyday work...
+**Errore Software:**
+> "Ricevo un errore 'DLL mancante' quando apro un programma. Cosa devo fare?"
 
-## How to Contribute
+**Sicurezza:**
+> "Come posso verificare se il mio computer è infetto da malware?"
 
-Any form of contribution is welcome, including but not limited to:
+**Configurazione:**
+> "Come imposto un indirizzo IP statico su Windows?"
 
--   Submitting issues
--   Submitting pull requests
--   Submitting feature requests
--   Submitting bug reports
--   Submitting documentation revisions
--   Submitting translations
--   Submitting any other forms of contribution
+## Funzionalità Avanzate
 
-## Prerequisites
+### Copilot Personalizzati
+Crea assistenti specializzati per compiti specifici:
+1. Vai su **I Miei Copilot**
+2. Clicca su **Crea Nuovo Copilot**
+3. Inserisci nome e prompt personalizzato
+4. Usa il copilot per chat specializzate
+
+### Knowledge Base
+Carica documenti per risposte contestualizzate:
+1. Vai su **Impostazioni** → **Knowledge Base**
+2. Clicca su **Aggiungi File**
+3. Carica manuali, documentazione tecnica, ecc.
+4. L'assistente userà questi documenti per rispondere
+
+## Risoluzione Problemi
+
+**L'applicazione non si avvia:**
+- Verifica di avere Windows 10 o superiore
+- Controlla che non ci siano antivirus che bloccano l'esecuzione
+
+**Errori di connessione API:**
+- Verifica che la tua API key sia corretta
+- Controlla la connessione internet
+- Assicurati di avere credito sul tuo account provider
+
+**L'assistente non risponde correttamente:**
+- Prova a riformulare la domanda in modo più specifico
+- Includi dettagli sul tuo sistema operativo e versione
+- Fornisci messaggi di errore completi quando disponibili
+
+## Sviluppo
+
+Questo progetto è un fork di [Chatbox Community Edition](https://github.com/chatboxai/chatbox), personalizzato per uso aziendale come assistente IT.
+
+### Requisiti di Sviluppo
 
 - Node.js (v20.x – v22.x)
-- npm (required – pnpm is not supported)
+- npm (pnpm non è supportato)
 
-## Build Instructions
+### Istruzioni per lo Sviluppo
 
-1. Clone the repository from Github
+1. Clona il repository
 
 ```bash
-git clone https://github.com/chatboxai/chatbox.git
+git clone https://github.com/matdac12/chatbox.git
+cd chatbox
 ```
 
-2. Install the required dependencies
+2. Installa le dipendenze
 
 ```bash
 npm install
 ```
 
-3. Start the application (in development mode)
+3. Avvia l'applicazione in modalità sviluppo
 
 ```bash
 npm run dev
 ```
 
-4. Build the application, package the installer for current platform
+4. Crea l'installer per Windows
 
 ```bash
 npm run package
 ```
 
-5. Build the application, package the installer for all platforms
+## Licenza
 
-```bash
-npm run package:all
-```
+Questo progetto è distribuito sotto licenza GPL-3.0. Vedi il file [LICENSE](./LICENSE) per i dettagli completi.
 
-## Star History
+Basato su [Chatbox Community Edition](https://github.com/chatboxai/chatbox) by [@benn](https://github.com/benn).
 
-[![Star History Chart](https://api.star-history.com/svg?repos=chatboxai/chatbox&type=Date)](https://star-history.com/#chatboxai/chatbox&Date)
+## Note sulla Privacy
 
-## Contact
+- Tutte le conversazioni sono salvate **localmente** sul tuo computer
+- Le richieste ai provider AI (OpenAI, Claude, Gemini) vengono inviate attraverso le loro API
+- Consulta le policy sulla privacy dei singoli provider per capire come trattano i dati
+- **Ollama** esegue i modelli completamente offline - nessun dato lascia il tuo computer
 
-[Twitter](https://x.com/ChatboxAI_HQ) | [Email](mailto:hi@chatboxai.com)
+## Contribuire
 
-## License
+Contributi, segnalazioni di bug e richieste di funzionalità sono benvenuti! Sentiti libero di aprire una issue o inviare una pull request.
 
-[LICENSE](./LICENSE)
+## Contatti
+
+Per supporto o domande, apri una [issue su GitHub](https://github.com/matdac12/chatbox/issues).
+
+---
+
+**Sviluppato con ❤️ per semplificare il supporto IT**
