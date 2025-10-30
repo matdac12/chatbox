@@ -130,7 +130,9 @@ const ConfigForm: FC<{
         >
           <Group>
             <Radio variant="outline" size="sm" value="http" label={t('Remote (http/sse)')} />
-            <Radio variant="outline" size="sm" value="stdio" label={t('Local (stdio)')} />
+            {window.electronAPI && (
+              <Radio variant="outline" size="sm" value="stdio" label={t('Local (stdio)')} />
+            )}
           </Group>
         </Radio.Group>
         {form.values.transport.type === 'stdio' && (
