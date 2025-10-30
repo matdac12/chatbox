@@ -42,7 +42,6 @@ import { useEffect, useMemo, useRef } from 'react'
 import SettingsModal from '@/modals/Settings'
 import { getOS } from '@/packages/navigator'
 import * as remote from '@/packages/remote'
-import PictureDialog from '@/pages/PictureDialog'
 import RemoteDialogWindow from '@/pages/RemoteDialogWindow'
 import SearchDialog from '@/pages/SearchDialog'
 import platform from '@/platform'
@@ -179,8 +178,6 @@ function Root() {
       {/* <MessageEditDialog /> */}
       {/* 添加链接 */}
       {/* <OpenAttachLinkDialog /> */}
-      {/* 图片预览 */}
-      <PictureDialog />
       {/* 似乎是从后端拉一个弹窗的配置 */}
       <RemoteDialogWindow />
       {/* 手机端举报内容 */}

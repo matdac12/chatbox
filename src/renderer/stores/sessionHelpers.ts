@@ -426,19 +426,6 @@ export function initEmptyChatSession(): Omit<Session, 'id'> {
   return newSession
 }
 
-export function initEmptyPictureSession(): Omit<Session, 'id'> {
-  const { picture: lastUsedPictureModel } = lastUsedModelStore.getState()
-
-  return {
-    name: 'Untitled',
-    type: 'picture',
-    messages: [createMessage('system', i18n.t('Image Creator Intro') || '')],
-    settings: {
-      ...lastUsedPictureModel,
-    },
-  }
-}
-
 export function getSessionMeta(session: SessionMeta) {
   return pick(session, ['id', 'name', 'starred', 'assistantAvatarKey', 'picUrl', 'type'])
 }

@@ -5,11 +5,10 @@ import { IconInfoCircle, IconTrash } from '@tabler/icons-react'
 import { pick } from 'lodash'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { chatSessionSettings, pictureSessionSettings } from 'src/shared/defaults'
+import { chatSessionSettings } from 'src/shared/defaults'
 import {
   createMessage,
   isChatSession,
-  isPictureSession,
   ModelProviderEnum,
   type Session,
   type SessionSettings,
@@ -17,8 +16,6 @@ import {
 import { Accordion, AccordionDetails, AccordionSummary } from '@/components/Accordion'
 import { AssistantAvatar } from '@/components/Avatar'
 import { handleImageInputAndSave } from '@/components/Image'
-import ImageCountSlider from '@/components/ImageCountSlider'
-import ImageStyleSelect from '@/components/ImageStyleSelect'
 import LazyNumberInput from '@/components/LazyNumberInput'
 import MaxContextMessageCountSlider from '@/components/MaxContextMessageCountSlider'
 import { ScalableIcon } from '@/components/ScalableIcon'
@@ -243,7 +240,6 @@ const SessionSettingsModal = NiceModal.create(
                   }
                 />
               )}
-              {isPictureSession(session) && <PictureConfig dataEdit={editingData} setDataEdit={setEditingData} />}
             </AccordionDetails>
           </Accordion>
         </DialogContent>
@@ -655,31 +651,3 @@ export function ChatConfig({
   )
 }
 
-function PictureConfig(props: { dataEdit: Session; setDataEdit: (data: Session) => void }) {
-  const { dataEdit, setDataEdit } = props
-  const globalSettings = settingsStore.getState().getSettings()
-  const sessionSettings = mergeSettings(globalSettings, dataEdit.settings || {}, dataEdit.type || 'chat')
-  const updateSettingsEdit = (updated: Partial<SessionSettings>) => {
-    setDataEdit({
-      ...dataEdit,
-      settings: {
-        ...(dataEdit.settings || {}),
-        ...updated,
-      },
-    })
-  }
-  return (
-    <Stack gap="md" className="mt-8">
-      <ImageStyleSelect
-        value={sessionSettings.dalleStyle || pictureSessionSettings().dalleStyle!}
-        onChange={(v) => updateSettingsEdit({ dalleStyle: v })}
-        className={sessionSettings.dalleStyle === undefined ? 'opacity-50' : ''}
-      />
-      <ImageCountSlider
-        value={sessionSettings.imageGenerateNum || pictureSessionSettings().imageGenerateNum!}
-        onChange={(v) => updateSettingsEdit({ imageGenerateNum: v })}
-        className={sessionSettings.imageGenerateNum === undefined ? 'opacity-50' : ''}
-      />
-    </Stack>
-  )
-}

@@ -48,7 +48,7 @@ import storage from '../storage'
 import * as atoms from './atoms'
 import * as chatStore from './chatStore'
 import * as scrollActions from './scrollActions'
-import { exportChat, initEmptyChatSession, initEmptyPictureSession } from './sessionHelpers'
+import { exportChat, initEmptyChatSession } from './sessionHelpers'
 import * as settingActions from './settingActions'
 import { settingsStore } from './settingsStore'
 import { uiStore } from './uiStore'
@@ -117,18 +117,8 @@ export async function modifyThreadName(sessionId: string, threadName: string) {
 /**
  * 创建一个空的会话
  */
-export async function createEmpty(type: 'chat' | 'picture') {
-  let newSession: Session
-  switch (type) {
-    case 'chat':
-      newSession = await create(initEmptyChatSession())
-      break
-    case 'picture':
-      newSession = await create(initEmptyPictureSession())
-      break
-    default:
-      throw new Error(`Unknown session type: ${type}`)
-  }
+export async function createEmpty() {
+  const newSession = await create(initEmptyChatSession())
   switchCurrentSession(newSession.id)
   return newSession
 }

@@ -151,9 +151,6 @@ export type ExportChatFormat = 'Markdown' | 'TXT' | 'HTML'
 export function isChatSession(session: Session) {
   return session.type === 'chat' || !session.type
 }
-export function isPictureSession(session: Session) {
-  return session.type === 'picture'
-}
 
 // type ClaudeParams = {
 //   thinking: {

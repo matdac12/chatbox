@@ -55,7 +55,6 @@ import * as sessionHelpers from '../../stores/sessionHelpers'
 import * as toastActions from '../../stores/toastActions'
 import { FileMiniCard, ImageMiniCard, LinkMiniCard } from '../Attachments'
 import { CompressionModal } from '../CompressionModal'
-import ImageModelSelect from '../ImageModelSelect'
 import ProviderImageIcon from '../icons/ProviderImageIcon'
 import KnowledgeBaseMenu from '../knowledge-base/KnowledgeBaseMenu'
 import ModelSelector from '../ModelSelector'
@@ -964,37 +963,28 @@ const InputBox = forwardRef<InputBoxRef, InputBoxProps>(
                   opened={showSelectModelErrorTip}
                   withArrow
                 >
-                  {sessionType === 'picture' ? (
-                    <ImageModelSelect onSelect={onSelectModel}>
-                      <span className="flex items-center text-sm cursor-pointer bg-transparent h-6">
-                        {providers.find((p) => p.id === model?.provider)?.name || model?.provider || t('Select Model')}
-                        <ScalableIcon icon={IconSelector} size={16} className="opacity-50" />
-                      </span>
-                    </ImageModelSelect>
-                  ) : (
-                    <ModelSelector
-                      onSelect={onSelectModel}
-                      selectedProviderId={model?.provider}
-                      selectedModelId={model?.modelId}
-                      position="top-end"
-                      transitionProps={{
-                        transition: 'fade-up',
-                        duration: 200,
-                      }}
-                    >
-                      <Flex gap="xxs" px={isSmallScreen ? 0 : 'xs'} align="center" className={cn('cursor-pointer')}>
-                        {!!model && <ProviderImageIcon size={isSmallScreen ? 20 : 24} provider={model.provider} />}
-                        <Text size={isSmallScreen ? 'xs' : 'sm'} className="line-clamp-1">
-                          {modelSelectorDisplayText}
-                        </Text>
-                        <ScalableIcon
-                          icon={IconSelector}
-                          size={20}
-                          className="flex-[0_0_auto] text-[var(--mantine-color-chatbox-tertiary-text)]"
-                        />
-                      </Flex>
-                    </ModelSelector>
-                  )}
+                  <ModelSelector
+                    onSelect={onSelectModel}
+                    selectedProviderId={model?.provider}
+                    selectedModelId={model?.modelId}
+                    position="top-end"
+                    transitionProps={{
+                      transition: 'fade-up',
+                      duration: 200,
+                    }}
+                  >
+                    <Flex gap="xxs" px={isSmallScreen ? 0 : 'xs'} align="center" className={cn('cursor-pointer')}>
+                      {!!model && <ProviderImageIcon size={isSmallScreen ? 20 : 24} provider={model.provider} />}
+                      <Text size={isSmallScreen ? 'xs' : 'sm'} className="line-clamp-1">
+                        {modelSelectorDisplayText}
+                      </Text>
+                      <ScalableIcon
+                        icon={IconSelector}
+                        size={20}
+                        className="flex-[0_0_auto] text-[var(--mantine-color-chatbox-tertiary-text)]"
+                      />
+                    </Flex>
+                  </ModelSelector>
                 </Tooltip>
               </Flex>
 
