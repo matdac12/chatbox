@@ -15,6 +15,7 @@ import CustomOpenAI from './custom-openai'
 import Gemini from './gemini'
 import Ollama from './ollama'
 import OpenAI from './openai'
+import Perplexity from './perplexity'
 import type { ModelInterface } from './types'
 
 export function getProviderSettings(setting: SessionSettings, globalSettings: Settings) {
@@ -123,6 +124,20 @@ export function getModel(
         },
         dependencies
       )
+
+    case ModelProviderEnum.Perplexity:
+      return new Perplexity(
+        {
+          perplexityApiKey: providerSetting.apiKey || '',
+          model,
+          temperature: settings.temperature,
+          topP: settings.topP,
+          maxOutputTokens: settings.maxTokens,
+          stream: settings.stream,
+        },
+        dependencies
+      )
+
     default:
       if (providerBaseInfo.isCustom) {
         switch (providerBaseInfo.type) {
@@ -181,6 +196,7 @@ export const aiProviderNameHash: Record<ModelProvider, string> = {
   [ModelProviderEnum.Claude]: 'Claude API',
   [ModelProviderEnum.Gemini]: 'Google Gemini API',
   [ModelProviderEnum.Ollama]: 'Ollama API',
+  [ModelProviderEnum.Perplexity]: 'Perplexity API',
 }
 
 export const AIModelProviderMenuOptionList = [
@@ -202,6 +218,11 @@ export const AIModelProviderMenuOptionList = [
   {
     value: ModelProviderEnum.Ollama,
     label: aiProviderNameHash[ModelProviderEnum.Ollama],
+    disabled: false,
+  },
+  {
+    value: ModelProviderEnum.Perplexity,
+    label: aiProviderNameHash[ModelProviderEnum.Perplexity],
     disabled: false,
   },
 ]

@@ -6,6 +6,7 @@ export enum ModelProviderEnum {
   Claude = 'claude',
   Gemini = 'gemini',
   Ollama = 'ollama',
+  Perplexity = 'perplexity',
 }
 
 export enum ModelProviderType {

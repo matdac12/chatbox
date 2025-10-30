@@ -353,4 +353,21 @@ export const SystemProviders: ProviderBaseInfo[] = [
       apiHost: 'http://127.0.0.1:11434',
     },
   },
+  {
+    id: ModelProviderEnum.Perplexity,
+    name: 'Perplexity',
+    type: ModelProviderType.OpenAI,
+    urls: {
+      website: 'https://www.perplexity.ai/',
+    },
+    defaultSettings: {
+      models: [
+        { modelId: 'sonar' },
+        { modelId: 'sonar-pro' },
+        { modelId: 'sonar-reasoning' },
+        { modelId: 'sonar-reasoning-pro' },
+        { modelId: 'sonar-deep-research' },
+      ],
+    },
+  },
 ]

@@ -14,6 +14,7 @@ import GeminiSettingUtil from './gemini-setting-util'
 import type { ModelSettingUtil } from './interface'
 import OllamaSettingUtil from './ollama-setting-util'
 import OpenAISettingUtil from './openai-setting-util'
+import PerplexitySettingUtil from './perplexity-setting-util'
 
 export function getModelSettingUtil(
   aiProvider: ModelProvider,
@@ -24,6 +25,7 @@ export function getModelSettingUtil(
     [ModelProviderEnum.Gemini]: GeminiSettingUtil,
     [ModelProviderEnum.Ollama]: OllamaSettingUtil,
     [ModelProviderEnum.OpenAI]: OpenAISettingUtil,
+    [ModelProviderEnum.Perplexity]: PerplexitySettingUtil,
   }
 
   // If provider is in hash, use the corresponding setting util
